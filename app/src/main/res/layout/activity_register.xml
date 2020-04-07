@@ -32,7 +32,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             app:counterEnabled="true"
-            app:passwordToggleEnabled="true"
             app:counterMaxLength="15"
             android:layout_height="wrap_content">
 
@@ -41,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:maxLength="15"
                 android:gravity="center"
                 android:hint="@string/primeiro_nome" />
 
@@ -48,6 +48,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            app:counterEnabled="true"
+            app:counterMaxLength="40"
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -56,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
+                android:maxLength="40"
                 android:gravity="center"
                 android:hint="@string/email"
                 android:inputType="textWebEmailAddress" />
@@ -75,6 +78,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 android:gravity="center"
+                android:maxLength="100"
                 android:hint="@string/password"
                 android:inputType="textPassword" />
 

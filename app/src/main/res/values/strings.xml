@@ -2,6 +2,9 @@
     <string name="app_name">ControlSales</string>
     <string name="title_action_bar">Controle de Vendas</string>
 
+    <string name="salvo_com_sucesso">Salvo com sucesso!</string>
+    <string name="preencha_os_campos">Preencha os Campos!</string>
+
 
     <string name="open">open</string>
     <string name="close">close</string>

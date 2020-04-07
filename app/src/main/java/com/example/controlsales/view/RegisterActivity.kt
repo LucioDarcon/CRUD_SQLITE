@@ -35,15 +35,14 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                             edtRegisterPasswordAdm.text.toString()
                         )
                         admBusiness.insertAdm(adm)
-                        Toast.makeText(this, "Salvo com sucesso!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, resources.getString(R.string.salvo_com_sucesso), Toast.LENGTH_LONG).show()
                         val i = Intent(this, AuthActivity::class.java)
                         startActivity(i)
                     } else {
-                        Toast.makeText(this, "Preencha os Campos", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, resources.getString(R.string.preencha_os_campos), Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
-                    e.printStackTrace()
-                    Toast.makeText(this, "Erro ao Salvar", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, e.message.toString(), Toast.LENGTH_LONG).show()
                 }
             }
         }
