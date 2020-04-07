@@ -1,6 +1,7 @@
 package com.example.controlsales.business
 
 import android.content.Context
+import com.example.controlsales.dto.LoginDTO
 import com.example.controlsales.entities.Adm
 import com.example.controlsales.repository.AdmRepository
 
@@ -33,6 +34,17 @@ class AdmBusiness(context: Context) {
         }catch (e: Exception){
             throw e
         }
+    }
+
+    fun authenticationAdmin(mLoginDTO: LoginDTO): ArrayList<Adm>{
+        val arrayListAdmin : ArrayList<Adm>
+        try {
+            arrayListAdmin =  admRepository.authAdmin(mLoginDTO)
+            if(arrayListAdmin.isEmpty()) throw Exception("Usuário não existe")
+        }catch (e: Exception){
+            throw e
+        }
+        return arrayListAdmin
     }
 
 }

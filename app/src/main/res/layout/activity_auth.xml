@@ -26,29 +26,45 @@
             android:id="@+id/imgAddAdmin"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_margin="16dp"
             android:layout_gravity="right"
+            android:layout_margin="16dp"
             android:src="@drawable/ic_person_add_24dp" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtEmail"
-            style="@style/Widget.AppCompat.EditText"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:hint="Digite seu Email" />
+            app:counterEnabled="true"
+            app:counterMaxLength="40">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtPassword"
-            style="@style/Widget.AppCompat.EditText"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtEmail"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:hint="Digite seu Email" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:hint="Digite seu Password" />
+            app:passwordToggleEnabled="true">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtPassword"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:hint="Digite seu Password" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -48,7 +48,6 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private fun initNavigationDrawerToolbar() {
         setSupportActionBar(toolbar)
-        supportActionBar?.title = this.resources.getString(R.string.title_action_bar)
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.open,

@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import com.example.controlsales.constants.ConstantsDB
 import com.example.controlsales.database.DataBaseHelper
+import com.example.controlsales.dto.LoginDTO
 import com.example.controlsales.entities.Adm
 
 class AdmRepository private constructor(context: Context) {
@@ -37,7 +38,6 @@ class AdmRepository private constructor(context: Context) {
     }
 
     fun selectAdm(email: String): Boolean {
-        var listAdm = ArrayList<Adm>()
         var result = false
         try {
             val db = mConnection.readableDatabase
@@ -49,7 +49,7 @@ class AdmRepository private constructor(context: Context) {
             )
             val selection = "${ConstantsDB.ADM.COLUMNS.EMAIL} = ?"
             val selectionArgs = arrayOf(email)
-            var cursor = db.query(
+            val cursor = db.query(
                 ConstantsDB.ADM.DATANAME,
                 projection,
                 selection,
@@ -58,13 +58,44 @@ class AdmRepository private constructor(context: Context) {
                 null,
                 null
             )
-
             result = cursor.count > 0
-
+            cursor.close()
         } catch (e: Exception) {
             throw e
         }
         return result
+    }
+
+    fun authAdmin(mLoginDTO: LoginDTO): ArrayList<Adm> {
+        val arrayListAdmin = ArrayList<Adm>()
+        val db = mConnection.readableDatabase
+        val projection = arrayOf(
+            ConstantsDB.ADM.COLUMNS.ID,
+            ConstantsDB.ADM.COLUMNS.NAME,
+            ConstantsDB.ADM.COLUMNS.EMAIL,
+            ConstantsDB.ADM.COLUMNS.PASSWORD
+        )
+        val selection = "${ConstantsDB.ADM.COLUMNS.EMAIL} = ? AND ${ConstantsDB.ADM.COLUMNS.PASSWORD} = ?"
+        val selectionArgs = arrayOf(mLoginDTO.email, mLoginDTO.password)
+        val cursor = db.query(
+            ConstantsDB.ADM.DATANAME,
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            val adm = Adm(
+                name = cursor.getString(cursor.getColumnIndex(ConstantsDB.ADM.COLUMNS.NAME)),
+                email = cursor.getString(cursor.getColumnIndex(ConstantsDB.ADM.COLUMNS.EMAIL))
+            )
+            arrayListAdmin.add(adm)
+        }
+        cursor.close()
+        return arrayListAdmin
     }
 
 }
