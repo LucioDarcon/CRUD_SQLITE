@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context=".view.RegisterActivity">
 
     <LinearLayout
@@ -20,55 +20,74 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_account_circle_black_24dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            />
+            android:layout_margin="16dp"
+            android:src="@drawable/user" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            app:counterEnabled="true"
+            app:passwordToggleEnabled="true"
+            app:counterMaxLength="15"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtRegisterNameAdm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:hint="@string/primeiro_nome" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtRegisterEmailAdm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:hint="@string/email"
+                android:inputType="textWebEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nome"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            />
+            app:counterEnabled="true"
+            app:passwordToggleEnabled="true">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtEmailPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:inputType="textWebEmailAddress"
-            android:layout_gravity="center" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtRegisterPasswordAdm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtRegisterPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:inputType="textWebEmailAddress"
-            />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRegisterAdm"
+            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
-            android:text="@string/ok"
-            android:background="@color/colorSecondary"
             android:layout_margin="16dp"
-            />
+            android:background="@color/colorSecondary"
+            android:text="@string/ok" />
 
     </LinearLayout>
 

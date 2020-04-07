@@ -10,6 +10,7 @@
     <string name="validation_fields_login">Complete os Campos</string>
     <string name="ok">Ok</string>
     <string name="nome">Nome</string>
+    <string name="primeiro_nome">Primeiro nome</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
 </resources>
