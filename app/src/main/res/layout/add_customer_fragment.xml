@@ -3,83 +3,104 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:focusableInTouchMode="true"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutNameCustomer"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/nameCustomer"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutNameCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="@string/nome" />
+                android:layout_gravity="center"
+                android:layout_margin="16dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/nameCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/nome" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutEmailCustomer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutNameCustomer"
-            android:layout_gravity="center"
-            android:layout_margin="16dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/emailCustomer"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutEmailCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="@string/email" />
+                android:layout_below="@+id/layoutNameCustomer"
+                android:layout_gravity="center"
+                android:layout_margin="16dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/emailCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/email" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutTelephoneCustomer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutEmailCustomer"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="15">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/telephoneCustomer"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutTelephoneCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="@string/telefone"
-                android:inputType="number" />
+                android:layout_below="@+id/layoutEmailCustomer"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="15">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/telephoneCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/telefone"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSaveCustomer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutTelephoneCustomer"
-            android:layout_centerHorizontal="true"
-            android:background="@color/colorSecondary"
-            android:text="@string/salvar"
-            android:theme="@style/Widget.AppCompat.Button.Borderless"
-            android:textColor="@color/white"/>
-    </RelativeLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutCpfCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutTelephoneCustomer"
+                android:layout_gravity="center"
+                android:layout_margin="14dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="15">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/cpfCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/cpf"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSaveCustomer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutCpfCustomer"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorSecondary"
+                android:text="@string/salvar"
+                android:textColor="@color/white"
+                android:theme="@style/Widget.AppCompat.Button.Borderless" />
+        </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

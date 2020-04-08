@@ -28,4 +28,6 @@
     <string name="nome_usuario">Nome usuario</string>
     <string name="telefone_usuario">Telefone usuario</string>
     <string name="email_usuario">Email usuario</string>
+    <string name="cpf_usuario">CPF usuario</string>
+    <string name="cpf">CPF</string>
 </resources>
