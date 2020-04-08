@@ -29,8 +29,9 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         initNavigationDrawerToolbar()
         onCompleteFields()
 
+
         val spFragment = supportFragmentManager.beginTransaction()
-        spFragment.add(R.id.content_fragment,
+        spFragment.replace(R.id.content_fragment,
             PanelFragment()
         )
         spFragment.commit()

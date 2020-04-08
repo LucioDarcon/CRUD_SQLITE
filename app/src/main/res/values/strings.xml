@@ -23,4 +23,9 @@
     <string name="clientes">Clientes</string>
     <string name="home">Home</string>
     <string name="preferencias">Preferências</string>
+    <string name="telefone">Telefone</string>
+    <string name="salvar">Salvar</string>
+    <string name="nome_usuario">Nome usuario</string>
+    <string name="telefone_usuario">Telefone usuario</string>
+    <string name="email_usuario">Email usuario</string>
 </resources>
