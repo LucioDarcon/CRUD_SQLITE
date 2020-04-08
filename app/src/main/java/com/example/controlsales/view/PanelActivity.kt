@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat
 import com.example.controlsales.R
 import com.example.controlsales.fragments.AddCustomerFragment
 import com.example.controlsales.fragments.PanelFragment
+import com.example.controlsales.fragments.SearchCustomerFragment
 import com.example.controlsales.util.SecurityPreferences
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_panel.*
@@ -59,7 +60,11 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 spFragment.commit()
             }
             R.id.consultCustomer -> {
-                Toast.makeText(this, "Consult Customer", Toast.LENGTH_LONG).show()
+                val spFragment = supportFragmentManager.beginTransaction()
+                spFragment.replace(R.id.content_fragment,
+                    SearchCustomerFragment()
+                )
+                spFragment.commit()
             }
             R.id.leave -> {
                 mSharedPreferences.clearAll()
