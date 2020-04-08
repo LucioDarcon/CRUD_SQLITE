@@ -24,6 +24,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
+        if(verifyAfterLogin()) redirectPanel()
         setListeners()
     }
 
@@ -37,8 +38,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
                             edtEmail.text.toString(), edtPassword.text.toString()
                         ))
                         mapArray(arrayAdmin)
-                        val i = Intent(this, PanelActivity::class.java)
-                        startActivity(i)
+                        redirectPanel()
                     }else{
                         Toast.makeText(this, resources.getString(R.string.preencha_os_campos), Toast.LENGTH_LONG).show()
                     }
@@ -63,11 +63,20 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun mapArray(arrayAdmin: ArrayList<Adm>){
-        mSharedPreferences = SecurityPreferences(this)
         for (i in arrayAdmin){
             mSharedPreferences.storeString("name", i.name)
             mSharedPreferences.storeString("email", i.email)
         }
     }
 
+    private fun verifyAfterLogin(): Boolean{
+        mSharedPreferences = SecurityPreferences(this)
+        return mSharedPreferences.getStoredString("name") != "" &&
+        mSharedPreferences.getStoredString("email") != ""
+    }
+
+    private fun redirectPanel(){
+        val i = Intent(this, PanelActivity::class.java)
+        startActivity(i)
+    }
 }

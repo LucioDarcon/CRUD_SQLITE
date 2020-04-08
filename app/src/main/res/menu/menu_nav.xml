@@ -3,17 +3,27 @@
 
     <item
         android:id="@+id/people"
-        android:title="Clientes">
+        android:title="@string/clientes">
         <menu>
             <item
                 android:id="@+id/consultCustomer"
                 android:icon="@drawable/ic_search_black_24dp"
-                android:title="Consultar" />
+                android:title="@string/consultar" />
             <item
                 android:id="@+id/addCustomer"
                 android:icon="@drawable/ic_person_add_24dp"
-                android:title="Cadastrar" />
+                android:title="@string/cadastrar" />
         </menu>
     </item>
 
+    <item
+        android:id="@+id/configCustomer"
+        android:title="@string/configuracoes">
+        <menu>
+            <item
+                android:id="@+id/leave"
+                android:icon="@drawable/ic_replay_black_24dp"
+                android:title="@string/sair" />
+        </menu>
+    </item>
 </menu>

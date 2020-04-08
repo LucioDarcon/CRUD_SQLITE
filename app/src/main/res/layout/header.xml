@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="200dp"
     android:gravity="bottom"
     android:padding="16dp"
-    android:background="@drawable/desert"
+    android:background="@drawable/nav_header"
     android:orientation="vertical">
 
 
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lucio Darcon"
+        style="@style/Widget.AppCompat.TextView"
         android:textColor="@color/white"/>
 
     <TextView
@@ -20,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+        style="@style/Widget.AppCompat.TextView"
         android:layout_marginTop="16dp"
         android:text="luciodarcon1997@hotmail.com" />
 

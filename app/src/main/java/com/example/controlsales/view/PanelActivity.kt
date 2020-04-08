@@ -1,5 +1,6 @@
 package com.example.controlsales.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
@@ -8,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.controlsales.R
+import com.example.controlsales.fragments.PanelFragment
 import com.example.controlsales.util.SecurityPreferences
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_panel.*
@@ -23,6 +25,12 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setContentView(R.layout.activity_panel)
         initNavigationDrawerToolbar()
         onCompleteFields()
+
+        val spFragment = supportFragmentManager.beginTransaction()
+        spFragment.add(R.id.content_fragment,
+            PanelFragment()
+        )
+        spFragment.commit()
     }
 
     override fun onBackPressed() {
@@ -40,6 +48,12 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
             R.id.consultCustomer -> {
                 Toast.makeText(this, "Consult Customer", Toast.LENGTH_LONG).show()
+            }
+            R.id.leave -> {
+                mSharedPreferences.clearAll()
+                finish()
+                val i = Intent(this, AuthActivity::class.java)
+                startActivity(i)
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
