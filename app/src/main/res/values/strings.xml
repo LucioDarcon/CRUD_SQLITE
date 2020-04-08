@@ -22,4 +22,5 @@
     <string name="consultar">Consultar</string>
     <string name="clientes">Clientes</string>
     <string name="home">Home</string>
+    <string name="preferencias">Preferências</string>
 </resources>
