@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.controlsales.R
+import com.example.controlsales.fragments.AddCustomerFragment
 import com.example.controlsales.fragments.PanelFragment
 import com.example.controlsales.util.SecurityPreferences
 import com.google.android.material.navigation.NavigationView
@@ -43,8 +44,19 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onNavigationItemSelected(p: MenuItem): Boolean {
         when (p.itemId) {
+            R.id.home -> {
+                val spFragment = supportFragmentManager.beginTransaction()
+                spFragment.replace(R.id.content_fragment,
+                    PanelFragment()
+                )
+                spFragment.commit()
+            }
             R.id.addCustomer -> {
-                Toast.makeText(this, "Add Customer", Toast.LENGTH_LONG).show()
+                val spFragment = supportFragmentManager.beginTransaction()
+                spFragment.replace(R.id.content_fragment,
+                    AddCustomerFragment()
+                )
+                spFragment.commit()
             }
             R.id.consultCustomer -> {
                 Toast.makeText(this, "Consult Customer", Toast.LENGTH_LONG).show()
@@ -82,4 +94,5 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         headerTxtNameUser.text = mSharedPreferences.getStoredString("name")
         headerTxtEmailUser.text = mSharedPreferences.getStoredString("email")
     }
+
 }
