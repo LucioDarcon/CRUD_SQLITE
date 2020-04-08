@@ -23,7 +23,7 @@
                 android:layout_margin="16dp">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/nameCustomer"
+                    android:id="@+id/edtNameCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -40,7 +40,7 @@
                 android:layout_margin="16dp">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/emailCustomer"
+                    android:id="@+id/edtEmailCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -59,7 +59,7 @@
                 app:counterMaxLength="15">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/telephoneCustomer"
+                    android:id="@+id/edtTelephoneCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -80,7 +80,7 @@
                 app:counterMaxLength="15">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/cpfCustomer"
+                    android:id="@+id/edtCpfCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

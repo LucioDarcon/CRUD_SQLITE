@@ -30,7 +30,7 @@ class AdmRepository private constructor(context: Context) {
             insertValues.put(ConstantsDB.ADM.COLUMNS.NAME, adm.name)
             insertValues.put(ConstantsDB.ADM.COLUMNS.EMAIL, adm.email)
             insertValues.put(ConstantsDB.ADM.COLUMNS.PASSWORD, adm.password)
-            result = db.insert(ConstantsDB.ADM.DATANAME, null, insertValues).toInt()
+            result = db.insert(ConstantsDB.ADM.DATA_NAME, null, insertValues).toInt()
         } catch (e: Exception) {
             throw e
         }
@@ -50,7 +50,7 @@ class AdmRepository private constructor(context: Context) {
             val selection = "${ConstantsDB.ADM.COLUMNS.EMAIL} = ?"
             val selectionArgs = arrayOf(email)
             val cursor = db.query(
-                ConstantsDB.ADM.DATANAME,
+                ConstantsDB.ADM.DATA_NAME,
                 projection,
                 selection,
                 selectionArgs,
@@ -78,7 +78,7 @@ class AdmRepository private constructor(context: Context) {
         val selection = "${ConstantsDB.ADM.COLUMNS.EMAIL} = ? AND ${ConstantsDB.ADM.COLUMNS.PASSWORD} = ?"
         val selectionArgs = arrayOf(mLoginDTO.email, mLoginDTO.password)
         val cursor = db.query(
-            ConstantsDB.ADM.DATANAME,
+            ConstantsDB.ADM.DATA_NAME,
             projection,
             selection,
             selectionArgs,

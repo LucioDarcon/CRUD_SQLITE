@@ -8,15 +8,12 @@ import com.example.controlsales.repository.AdmRepository
 class AdmBusiness(context: Context) {
 
     private val admRepository = AdmRepository.getInstance(context)
-    object RESULT{
-        var VALUE = 0
-    }
 
     fun insertAdm(adm: Adm){
         try {
             selectAdm(adm.email)
-            RESULT.VALUE = admRepository.insertAdm(adm)
-            when(RESULT.VALUE) {
+            var result = admRepository.insertAdm(adm)
+            when(result) {
                 0 -> {
                     throw Exception("Erro ao Inesperado!")
                 }

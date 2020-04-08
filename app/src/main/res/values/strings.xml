@@ -3,7 +3,9 @@
     <string name="title_action_bar">Controle de Vendas</string>
 
     <string name="salvo_com_sucesso">Salvo com sucesso!</string>
-    <string name="preencha_os_campos">Preencha os Campos!</string>
+    <string name="erro_ao_salvar">Erro ao salvar!</string>
+    <string name="preencha_os_campos">Preencha os campos!</string>
+    <string name="erro_inesperado">Erro inesperado!</string>
 
 
     <string name="open">open</string>
