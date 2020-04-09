@@ -3,6 +3,7 @@ package com.example.controlsales.business
 import android.content.Context
 import com.example.controlsales.entities.Customer
 import com.example.controlsales.repository.CustomerRepository
+import kotlin.collections.ArrayList
 
 class CustomerBusiness(context: Context) {
 
@@ -16,5 +17,13 @@ class CustomerBusiness(context: Context) {
             throw e
         }
         return result
+    }
+
+    fun getAllCustomer(): ArrayList<Customer>{
+        try {
+            return customerRepository.getAllCustomer()
+        }catch (e: Exception){
+            throw e
+        }
     }
 }
