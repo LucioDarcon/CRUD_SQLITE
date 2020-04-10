@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,11 +23,11 @@ class SearchCustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         var viewMain = inflater.inflate(R.layout.search_customer_fragment, container, false)
-        viewMain = onCreateRecyclerViewCustomer(viewMain)
+        viewMain = createRecyclerViewCustomer(viewMain)
         return viewMain
     }
 
-    private fun onCreateRecyclerViewCustomer(viewMain: View) : View{
+    private fun createRecyclerViewCustomer(viewMain: View) : View{
         try {
             val recyclerViewCustomer: RecyclerViewCustomer
             val recyclerView = viewMain.findViewById<RecyclerView>(R.id.recyclerViewCustomer)
@@ -45,6 +44,8 @@ class SearchCustomerFragment : Fragment() {
         }
         return viewMain
     }
+
+
 
     private fun getArrayListCustomer(itemView: View): ArrayList<Customer>{
         var mArrayListCustomer = ArrayList<Customer>()

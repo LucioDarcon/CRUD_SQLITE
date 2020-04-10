@@ -5,10 +5,12 @@ import android.content.Context
 import com.example.controlsales.constants.ConstantsDB
 import com.example.controlsales.database.DataBaseHelper
 import com.example.controlsales.entities.Customer
+import com.example.controlsales.util.SecurityPreferences
 
 class CustomerRepository private constructor(context: Context) {
 
-    val mConnection = DataBaseHelper(context)
+    private val mConnection = DataBaseHelper(context)
+    private val mSecurityPreferences = SecurityPreferences(context)
 
     companion object {
         fun getInstance(context: Context): CustomerRepository {
@@ -25,10 +27,12 @@ class CustomerRepository private constructor(context: Context) {
         var result = 0
         val db = mConnection.writableDatabase
         val contentValues = ContentValues()
+        val idAdm = mSecurityPreferences.getStoredString("idAdm")
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.NAME, mCustomer.name)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.EMAIL, mCustomer.email)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE, mCustomer.telephone)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.CPF, mCustomer.cpf)
+        contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.ID_ADM, idAdm?.toInt())
         result = db.insert(ConstantsDB.CUSTOMER.DATA_NAME, null, contentValues).toInt()
         return result
     }
@@ -42,8 +46,11 @@ class CustomerRepository private constructor(context: Context) {
             ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE,
             ConstantsDB.CUSTOMER.COLUMNS.CPF
         )
+        val idAdm = mSecurityPreferences.getStoredString("idAdm")?.toInt()
+        val selection = "${ConstantsDB.CUSTOMER.COLUMNS.ID_ADM} = ?"
+        val selectionArgs = arrayOf(idAdm.toString())
         val orderBy = ConstantsDB.CUSTOMER.COLUMNS.ID
-        val cursor = db.query(ConstantsDB.CUSTOMER.DATA_NAME, projection, null, null, null, null, orderBy)
+        val cursor = db.query(ConstantsDB.CUSTOMER.DATA_NAME, projection, selection, selectionArgs, null, null, orderBy)
 
         while(cursor.moveToNext()){
             val customer = Customer(

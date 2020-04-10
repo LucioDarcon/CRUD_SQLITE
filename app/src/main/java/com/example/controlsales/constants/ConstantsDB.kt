@@ -18,6 +18,7 @@ class ConstantsDB {
 
         object COLUMNS {
             const val ID = "id"
+            const val ID_ADM = "id_adm"
             const val NAME = "name"
             const val EMAIL = "email"
             const val TELEPHONE = "telephone"

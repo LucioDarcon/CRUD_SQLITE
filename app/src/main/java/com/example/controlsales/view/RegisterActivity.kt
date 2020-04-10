@@ -30,9 +30,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     if (validationFields()) {
                         admBusiness = AdmBusiness(this)
                         adm = Adm(
-                            edtRegisterNameAdm.text.toString(),
-                            edtRegisterEmailAdm.text.toString(),
-                            edtRegisterPasswordAdm.text.toString()
+                            name = edtRegisterNameAdm.text.toString(),
+                            email = edtRegisterEmailAdm.text.toString(),
+                            password = edtRegisterPasswordAdm.text.toString()
                         )
                         admBusiness.insertAdm(adm)
                         Toast.makeText(this, resources.getString(R.string.salvo_com_sucesso), Toast.LENGTH_LONG).show()

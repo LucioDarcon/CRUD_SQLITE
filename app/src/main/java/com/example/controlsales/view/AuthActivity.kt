@@ -34,7 +34,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
                 try {
                     if (validationFields()) {
                         mAdmBusiness = AdmBusiness(this)
-                        var arrayAdmin = mAdmBusiness.authenticationAdmin(LoginDTO(
+                        val arrayAdmin = mAdmBusiness.authenticationAdmin(LoginDTO(
                             edtEmail.text.toString(), edtPassword.text.toString()
                         ))
                         mapArray(arrayAdmin)
@@ -64,6 +64,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun mapArray(arrayAdmin: ArrayList<Adm>){
         for (i in arrayAdmin){
+            mSharedPreferences.storeString("idAdm", i.id.toString())
             mSharedPreferences.storeString("name", i.name)
             mSharedPreferences.storeString("email", i.email)
         }

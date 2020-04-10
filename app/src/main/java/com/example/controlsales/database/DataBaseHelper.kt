@@ -5,7 +5,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.controlsales.constants.ConstantsDB
 
-class DataBaseHelper(context: Context) : SQLiteOpenHelper(context,
+class DataBaseHelper(context: Context) : SQLiteOpenHelper(
+    context,
     DATA_NAME, null,
     DATA_VERSION
 ) {
@@ -25,10 +26,12 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context,
 
     private val createTableCustomer = """ CREATE TABLE ${ConstantsDB.CUSTOMER.DATA_NAME} (
         ${ConstantsDB.CUSTOMER.COLUMNS.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+        ${ConstantsDB.CUSTOMER.COLUMNS.ID_ADM} INTEGER,
         ${ConstantsDB.CUSTOMER.COLUMNS.NAME} TEXT,
         ${ConstantsDB.CUSTOMER.COLUMNS.EMAIL} TEXT,
         ${ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE} TEXT,
-        ${ConstantsDB.CUSTOMER.COLUMNS.CPF} TEXT
+        ${ConstantsDB.CUSTOMER.COLUMNS.CPF} TEXT,
+        FOREIGN KEY (${ConstantsDB.CUSTOMER.COLUMNS.ID_ADM}) REFERENCES ${ConstantsDB.ADM.DATA_NAME} (${ConstantsDB.ADM.COLUMNS.ID})
         );"""
 
     private val dropTableAdmin = "DROP TABLE IF EXISTS  ${ConstantsDB.ADM.DATA_NAME}"
@@ -44,6 +47,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context,
         db.execSQL(dropTableAdmin)
         db.execSQL(dropTableCustomer)
         db.execSQL(createTableAdmin)
+        db.execSQL(createTableCustomer)
     }
 
 }
