@@ -92,12 +92,13 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSaveCustomer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layoutCpfCustomer"
                 android:layout_centerHorizontal="true"
-                android:background="@color/colorSecondary"
+                android:background="@drawable/bg_btn_radius"
                 android:text="@string/salvar"
+                android:layout_margin="16dp"
                 android:textColor="@color/white"
                 android:theme="@style/Widget.AppCompat.Button.Borderless" />
         </RelativeLayout>

@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginBottom="16dp"
     android:layout_height="wrap_content">
 
 
     <RelativeLayout
         android:id="@+id/recyclerViewAllCustomer"
         android:layout_width="match_parent"
-        android:background="@drawable/border"
         android:layout_height="wrap_content">
 
 
@@ -21,8 +21,8 @@
 
             <ImageView
                 android:id="@+id/imgEditCustomer"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_edit_black_24dp"
                 android:layout_margin="16dp"
                 android:layout_alignParentLeft="true"
@@ -30,8 +30,8 @@
 
             <ImageView
                 android:id="@+id/imgAddressCustomer"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/imgDeleteCustomer"
                 android:src="@drawable/ic_location_on_black_24dp"
                 android:layout_toRightOf="@+id/imgEditCustomer"
@@ -39,8 +39,8 @@
 
             <ImageView
                 android:id="@+id/imgDeleteCustomer"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_delete_black_24dp"
                 android:layout_margin="15dp" />
@@ -50,11 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgAddressCustomer"
-                android:layout_gravity="right"
-                android:layout_margin="16dp"
-                android:layout_marginTop="-32dp"
-                android:background="@drawable/border_bottom"
-                android:gravity="center|left"
+                android:gravity="center"
+                style="@style/Widget.AppCompat.Light.ActionBar.TabText"
                 android:text="@string/nome_usuario" />
 
 
@@ -62,10 +59,9 @@
                 android:id="@+id/itemCustomerCpf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom"
                 android:layout_below="@+id/itemCustomerName"
-                android:layout_margin="16dp"
-                android:gravity="center|left"
+                style="@style/Widget.AppCompat.Light.ActionBar.TabText"
+                android:gravity="center"
                 android:text="@string/cpf_usuario" />
 
         </RelativeLayout>
@@ -80,19 +76,21 @@
                 android:id="@+id/itemCustomerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/border_bottom"
-                android:text="@string/email_usuario" />
+                android:gravity="center"
+                android:text="@string/email_usuario"
+                style="@style/Widget.AppCompat.Light.ActionBar.TabText"
+                />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/itemCustomerTelephone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/border_bottom"
+                android:gravity="center"
                 android:layout_below="@+id/itemCustomerEmail"
-                android:text="@string/telefone_usuario" />
+                android:text="@string/telefone_usuario"
+                style="@style/Widget.AppCompat.Light.ActionBar.TabText"
+                />
 
         </RelativeLayout>
 
