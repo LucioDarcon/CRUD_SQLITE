@@ -34,4 +34,13 @@ class CustomerBusiness(context: Context) {
             throw e
         }
     }
+
+    fun getCustomer(id: String): Customer{
+        try{
+            return customerRepository.getCustomer(id)
+        }catch (e: Exception){
+            throw e
+        }
+    }
+
 }

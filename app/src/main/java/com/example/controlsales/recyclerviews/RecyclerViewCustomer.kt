@@ -29,6 +29,8 @@ class RecyclerViewCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
 
+
+
     fun submitList(listCustomer: ArrayList<Customer>){
         this.items = listCustomer
     }

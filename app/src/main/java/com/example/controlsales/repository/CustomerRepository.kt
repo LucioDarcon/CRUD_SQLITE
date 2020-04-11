@@ -41,6 +41,7 @@ class CustomerRepository private constructor(context: Context) {
         val arrayListCustomer = ArrayList<Customer>()
         val db = mConnection.readableDatabase
         val projection = arrayOf(
+            ConstantsDB.CUSTOMER.COLUMNS.ID,
             ConstantsDB.CUSTOMER.COLUMNS.NAME,
             ConstantsDB.CUSTOMER.COLUMNS.EMAIL,
             ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE,
@@ -54,10 +55,11 @@ class CustomerRepository private constructor(context: Context) {
 
         while(cursor.moveToNext()){
             val customer = Customer(
-                cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.NAME)),
-                cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.EMAIL)),
-                cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE)),
-                cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.CPF))
+                id = cursor.getInt(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.ID)),
+                name = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.NAME)),
+                email = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.EMAIL)),
+                telephone = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE)),
+                cpf = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.CPF))
             )
             arrayListCustomer.add(customer)
         }
@@ -67,16 +69,38 @@ class CustomerRepository private constructor(context: Context) {
 
     fun alterCustomer(mCustomer: Customer): Int{
         val db = mConnection.writableDatabase
-        val selection = "${ConstantsDB.CUSTOMER.COLUMNS.EMAIL} = ?"
-        val selectionArgs = arrayOf(mCustomer.email)
+        val selection = "${ConstantsDB.CUSTOMER.COLUMNS.ID} = ?"
+        val selectionArgs = arrayOf(mCustomer.id.toString())
         val contentValues = ContentValues()
-
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.NAME, mCustomer.name)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.EMAIL, mCustomer.email)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE, mCustomer.telephone)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.CPF, mCustomer.cpf)
 
         return db.update(ConstantsDB.CUSTOMER.DATA_NAME, contentValues,selection, selectionArgs).toInt()
+    }
+
+    fun getCustomer(id: String): Customer{
+        val db = mConnection.writableDatabase
+        val projection = arrayOf(
+            ConstantsDB.CUSTOMER.COLUMNS.NAME,
+            ConstantsDB.CUSTOMER.COLUMNS.EMAIL,
+            ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE,
+            ConstantsDB.CUSTOMER.COLUMNS.CPF
+        )
+        val selection = "${ConstantsDB.CUSTOMER.COLUMNS.ID} = ?"
+        val selectionArgs = arrayOf(id)
+        val orderBy = ConstantsDB.CUSTOMER.COLUMNS.ID
+        val cursor = db.query(ConstantsDB.CUSTOMER.DATA_NAME, projection, selection, selectionArgs, null, null, orderBy)
+        var customer = Customer()
+        while (cursor.moveToNext()){
+            customer =
+                Customer(name = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.NAME)),
+                email = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.EMAIL)),
+                telephone = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE)),
+                cpf = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.CPF)))
+        }
+        return customer
     }
 
 }

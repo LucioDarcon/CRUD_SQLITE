@@ -62,10 +62,10 @@ class AddCustomerFragment : Fragment() {
         val mEdtCpfCustomer = mView.findViewById<EditText>(R.id.edtCpfCustomer)
 
         val mCustomer = Customer(
-            mEdtNameCustomer.text.toString(),
-            mEdtEmailCustomer.text.toString(),
-            mEdtTelephoneCustomer.text.toString(),
-            mEdtCpfCustomer.text.toString()
+            name = mEdtNameCustomer.text.toString(),
+            email = mEdtEmailCustomer.text.toString(),
+            telephone = mEdtTelephoneCustomer.text.toString(),
+            cpf = mEdtCpfCustomer.text.toString()
         )
         if(mCustomerBusiness.insertCustomer(mCustomer) > 0) ret = true
         return ret
