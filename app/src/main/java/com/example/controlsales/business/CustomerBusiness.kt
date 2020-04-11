@@ -26,4 +26,12 @@ class CustomerBusiness(context: Context) {
             throw e
         }
     }
+
+    fun alterCustomer(mCustomer: Customer): Int{
+        try{
+            return customerRepository.alterCustomer(mCustomer)
+        }catch (e: Exception){
+            throw e
+        }
+    }
 }

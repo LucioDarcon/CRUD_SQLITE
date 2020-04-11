@@ -12,5 +12,9 @@
     </style>
 
 
+    <style name="Dialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 
 </resources>

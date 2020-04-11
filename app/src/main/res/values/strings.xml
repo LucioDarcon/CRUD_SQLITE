@@ -32,4 +32,5 @@
     <string name="email_usuario">Email usuario</string>
     <string name="cpf_usuario">CPF usuario</string>
     <string name="cpf">CPF</string>
+    <string name="fechar">fechar</string>
 </resources>

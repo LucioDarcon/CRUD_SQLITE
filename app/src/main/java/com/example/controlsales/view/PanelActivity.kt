@@ -102,4 +102,6 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         headerTxtEmailUser.text = mSharedPreferences.getStoredString("email")
     }
 
+
+
 }

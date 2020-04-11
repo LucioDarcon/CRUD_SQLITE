@@ -65,4 +65,18 @@ class CustomerRepository private constructor(context: Context) {
         return arrayListCustomer
     }
 
+    fun alterCustomer(mCustomer: Customer): Int{
+        val db = mConnection.writableDatabase
+        val selection = "${ConstantsDB.CUSTOMER.COLUMNS.EMAIL} = ?"
+        val selectionArgs = arrayOf(mCustomer.email)
+        val contentValues = ContentValues()
+
+        contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.NAME, mCustomer.name)
+        contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.EMAIL, mCustomer.email)
+        contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE, mCustomer.telephone)
+        contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.CPF, mCustomer.cpf)
+
+        return db.update(ConstantsDB.CUSTOMER.DATA_NAME, contentValues,selection, selectionArgs).toInt()
+    }
+
 }
