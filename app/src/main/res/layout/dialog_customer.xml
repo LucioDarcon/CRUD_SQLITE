@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_customer"
     android:focusableInTouchMode="true">
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,9 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutEmailCustomer"
             android:layout_gravity="center"
-            android:layout_margin="16dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="15">
+            android:layout_margin="16dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edtTelephoneCustomer"
@@ -78,9 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutTelephoneCustomer"
             android:layout_gravity="center"
-            android:layout_margin="14dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="15">
+            android:layout_margin="14dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edtCpfCustomer"

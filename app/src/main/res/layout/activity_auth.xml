@@ -44,6 +44,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 android:gravity="center"
+                android:inputType="textWebEmailAddress"
                 android:hint="Digite seu Email" />
 
         </com.google.android.material.textfield.TextInputLayout>

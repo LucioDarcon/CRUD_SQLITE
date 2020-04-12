@@ -4,14 +4,12 @@
 
     <item android:id="@+id/preferences"
         android:title="@string/preferencias">
-
         <menu>
             <item
                 android:id="@+id/home"
                 android:icon="@drawable/ic_home_black_24dp"
                 android:title="@string/home" />
         </menu>
-
     </item>
 
     <item
@@ -19,13 +17,9 @@
         android:title="@string/clientes">
         <menu>
             <item
-                android:id="@+id/consultCustomer"
-                android:icon="@drawable/ic_search_black_24dp"
-                android:title="@string/consultar" />
-            <item
                 android:id="@+id/addCustomer"
                 android:icon="@drawable/ic_person_black_add_24dp"
-                android:title="@string/cadastrar" />
+                android:title="@string/gerenciar_clientes" />
         </menu>
     </item>
 

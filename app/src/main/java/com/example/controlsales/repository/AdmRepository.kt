@@ -90,8 +90,8 @@ class AdmRepository private constructor(context: Context) {
         while (cursor.moveToNext()) {
             val adm = Adm(
                 id = cursor.getInt(cursor.getColumnIndex(ConstantsDB.ADM.COLUMNS.ID)),
-                name = cursor.getString(cursor.getColumnIndex(ConstantsDB.ADM.COLUMNS.NAME)).toUpperCase(),
-                email = cursor.getString(cursor.getColumnIndex(ConstantsDB.ADM.COLUMNS.EMAIL)).toUpperCase()
+                name = cursor.getString(cursor.getColumnIndex(ConstantsDB.ADM.COLUMNS.NAME)),
+                email = cursor.getString(cursor.getColumnIndex(ConstantsDB.ADM.COLUMNS.EMAIL))
             )
             arrayListAdmin.add(adm)
         }

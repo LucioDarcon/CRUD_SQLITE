@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,7 +18,7 @@ import com.example.controlsales.entities.Customer
 import com.example.controlsales.recyclerviews.RecyclerViewCustomer
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class SearchCustomerFragment : Fragment() {
+class CustomerFragment : Fragment() {
 
     private lateinit var mCustomerBusiness: CustomerBusiness
 
@@ -37,10 +38,13 @@ class SearchCustomerFragment : Fragment() {
     }
 
     private fun showDialogRegisterCustomer(viewMain: View) {
+        val fromBottom = AnimationUtils.loadAnimation(viewMain.context, R.anim.from_bottom)
         val mDialog = Dialog(viewMain.context)
-        mDialog.setContentView(R.layout.dialog_alter_customer)
+        mDialog.setContentView(R.layout.dialog_customer)
+        mDialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
         mDialog.show()
         val btnSalveCustomer = mDialog.findViewById<Button>(R.id.btnSaveCustomer)
+        btnSalveCustomer.animation = fromBottom
         btnSalveCustomer.setOnClickListener {
             try {
                 val edtNameCustomer = mDialog.findViewById<EditText>(R.id.edtNameCustomer)
@@ -75,6 +79,7 @@ class SearchCustomerFragment : Fragment() {
             }
         }
         val btnCloseDialog = mDialog.findViewById<Button>(R.id.btnCloseDialogCustomer)
+        btnCloseDialog.animation = fromBottom
         btnCloseDialog.setOnClickListener {
             mDialog.dismiss()
         }

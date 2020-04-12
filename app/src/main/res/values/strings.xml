@@ -22,7 +22,6 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="configuracoes">Configurações</string>
     <string name="consultar">Consultar</string>
-    <string name="clientes">Clientes</string>
     <string name="home">Home</string>
     <string name="preferencias">Preferências</string>
     <string name="telefone">Telefone</string>
@@ -33,4 +32,7 @@
     <string name="cpf_usuario">CPF usuario</string>
     <string name="cpf">CPF</string>
     <string name="fechar">fechar</string>
+    <string name="clientes">Clientes</string>
+    <string name="gerenciar_clientes">Gerenciar Clientes</string>
+    <string name="comprar">Comprar</string>
 </resources>

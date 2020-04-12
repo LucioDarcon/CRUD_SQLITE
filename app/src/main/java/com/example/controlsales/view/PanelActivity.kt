@@ -10,9 +10,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.controlsales.R
-import com.example.controlsales.fragments.AddCustomerFragment
 import com.example.controlsales.fragments.PanelFragment
-import com.example.controlsales.fragments.SearchCustomerFragment
+import com.example.controlsales.fragments.CustomerFragment
 import com.example.controlsales.util.SecurityPreferences
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_panel.*
@@ -26,6 +25,7 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_panel)
+        setSupportActionBar(toolbar)
         initNavigationDrawerToolbar()
         onCompleteFields()
 
@@ -57,14 +57,7 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             R.id.addCustomer -> {
                 val spFragment = supportFragmentManager.beginTransaction()
                 spFragment.replace(R.id.content_fragment,
-                    AddCustomerFragment()
-                )
-                spFragment.commit()
-            }
-            R.id.consultCustomer -> {
-                val spFragment = supportFragmentManager.beginTransaction()
-                spFragment.replace(R.id.content_fragment,
-                    SearchCustomerFragment()
+                    CustomerFragment()
                 )
                 spFragment.commit()
             }
@@ -80,7 +73,6 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     private fun initNavigationDrawerToolbar() {
-        setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.open,
@@ -102,6 +94,19 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         headerTxtEmailUser.text = mSharedPreferences.getStoredString("email")
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_include_toolbar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.car -> {
+                Toast.makeText(this, "Car", Toast.LENGTH_LONG).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 
 }

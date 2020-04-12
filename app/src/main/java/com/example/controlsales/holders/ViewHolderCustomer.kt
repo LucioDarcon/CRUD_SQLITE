@@ -3,7 +3,6 @@ package com.example.controlsales.holders
 import android.app.Dialog
 import android.view.View
 import android.widget.*
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
@@ -35,7 +34,7 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
 
         val imgDelete = itemView.findViewById<ImageView>(R.id.imgDeleteCustomer)
         imgDelete.setOnClickListener(View.OnClickListener {
-            val snack = Snackbar.make(it, "Deseja Excluir " + nameCustomer.text.toString() + " ?", Snackbar.LENGTH_LONG)
+            val snack = Snackbar.make(it, "Deseja excluir " + nameCustomer.text.toString() + "?", Snackbar.LENGTH_LONG)
             snack.setAction("Sim", View.OnClickListener {
                 itemView.visibility = View.GONE
             })
@@ -48,7 +47,7 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
 
     private fun showDialogAlterCustomer() {
         val mDialog = Dialog(itemView.context)
-        mDialog.setContentView(R.layout.dialog_alter_customer)
+        mDialog.setContentView(R.layout.dialog_customer)
 
         val edtNameCustomer = mDialog.findViewById<EditText>(R.id.edtNameCustomer)
         edtNameCustomer.setText(nameCustomer.text)
@@ -62,6 +61,7 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
         val edtCPFCustomer = mDialog.findViewById<EditText>(R.id.edtCpfCustomer)
         edtCPFCustomer.setText(cpfCustomer.text)
 
+        mDialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
         mDialog.show()
 
         val btnClose = mDialog.findViewById<Button>(R.id.btnCloseDialogCustomer)
