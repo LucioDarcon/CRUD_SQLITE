@@ -1,26 +1,15 @@
 package com.example.controlsales.holders
 
 import android.app.Dialog
-import android.content.Intent
-import android.content.SharedPreferences
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.AppLaunchChecker
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
 import com.example.controlsales.entities.Customer
-import com.example.controlsales.fragments.AddCustomerFragment
-import com.example.controlsales.fragments.SearchCustomerFragment
-import com.example.controlsales.recyclerviews.RecyclerViewCustomer
-import com.example.controlsales.util.SecurityPreferences
-import com.example.controlsales.view.PanelActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.recycler_customer.view.*
-import kotlinx.android.synthetic.main.search_customer_fragment.view.*
 
 class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -44,7 +33,18 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
             showDialogAlterCustomer()
         })
 
+        val imgDelete = itemView.findViewById<ImageView>(R.id.imgDeleteCustomer)
+        imgDelete.setOnClickListener(View.OnClickListener {
+            val snack = Snackbar.make(it, "Deseja Excluir " + nameCustomer.text.toString() + " ?", Snackbar.LENGTH_LONG)
+            snack.setAction("Sim", View.OnClickListener {
+                itemView.visibility = View.GONE
+            })
+            val snackView = snack.view
+            snack.show()
+        })
+
     }
+
 
     private fun showDialogAlterCustomer() {
         val mDialog = Dialog(itemView.context)
@@ -73,13 +73,16 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
 
         btnAlterCustomer.setOnClickListener {
             mCustomerBusiness = CustomerBusiness(itemView.context)
-            if (mCustomerBusiness.alterCustomer(Customer(
-                    idCustomer.text.toString().toInt(),
-                    name = edtNameCustomer.text.toString(),
-                    email = edtEmailCustomer.text.toString(),
-                    cpf = edtCPFCustomer.text.toString(),
-                    telephone = edtTelephoneCustomer.text.toString()
-                )) > 0) {
+            if (mCustomerBusiness.alterCustomer(
+                    Customer(
+                        idCustomer.text.toString().toInt(),
+                        name = edtNameCustomer.text.toString(),
+                        email = edtEmailCustomer.text.toString(),
+                        cpf = edtCPFCustomer.text.toString(),
+                        telephone = edtTelephoneCustomer.text.toString()
+                    )
+                ) > 0
+            ) {
                 nameCustomer.text = edtNameCustomer.text.toString()
                 emailCustomer.text = edtEmailCustomer.text.toString()
                 cpfCustomer.text = edtCPFCustomer.text.toString()
@@ -88,7 +91,6 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
             }
         }
     }
-
 
 
 }
