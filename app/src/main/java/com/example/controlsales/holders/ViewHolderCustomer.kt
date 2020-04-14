@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
 import com.example.controlsales.entities.Customer
+import com.example.controlsales.recyclerviews.RecyclerViewCustomer
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.recycler_customer.view.*
 
@@ -18,7 +19,12 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
     private var cpfCustomer: TextView = itemView.itemCustomerCpf
     private var idCustomer: TextView = itemView.itemCustomerId
     private lateinit var mCustomerBusiness: CustomerBusiness
+    private lateinit var mRecyclerViewCustomer: RecyclerViewCustomer
+    
 
+    fun assignRecyclerView(recyclerViewCustomer: RecyclerViewCustomer){
+        this.mRecyclerViewCustomer = recyclerViewCustomer
+    }
 
     fun bind(customer: Customer) {
         nameCustomer.text = customer.name
@@ -83,13 +89,16 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
                     )
                 ) > 0
             ) {
-                nameCustomer.text = edtNameCustomer.text.toString()
-                emailCustomer.text = edtEmailCustomer.text.toString()
-                cpfCustomer.text = edtCPFCustomer.text.toString()
-                telephoneCustomer.text = edtTelephoneCustomer.text.toString()
+                mRecyclerViewCustomer.submitList(mCustomerBusiness.getAllCustomer())
+                mRecyclerViewCustomer.notifyDataSetChanged()
                 mDialog.dismiss()
             }
         }
+    }
+
+    fun actualizeRecyclerView(){
+        mRecyclerViewCustomer.submitList(mCustomerBusiness.getAllCustomer())
+        mRecyclerViewCustomer.notifyDataSetChanged()
     }
 
 

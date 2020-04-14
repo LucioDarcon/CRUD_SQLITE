@@ -23,18 +23,15 @@ class RecyclerViewCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderCustomer -> {
+                holder.assignRecyclerView(this)
                 holder.bind(items[position])
             }
         }
     }
 
-
-
-
     fun submitList(listCustomer: ArrayList<Customer>){
         this.items = listCustomer
     }
-
 
 
 }

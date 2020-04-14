@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
 import com.example.controlsales.entities.Customer
+import com.example.controlsales.holders.ViewHolderCustomer
 import com.example.controlsales.recyclerviews.RecyclerViewCustomer
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -34,6 +35,7 @@ class CustomerFragment : Fragment() {
         floatButton.setOnClickListener {
             showDialogRegisterCustomer(viewMain)
         }
+
         return viewMain
     }
 
@@ -58,12 +60,13 @@ class CustomerFragment : Fragment() {
                     cpf = edtCPFCustomer.text.toString()
                 )
                 val result = mCustomerBusiness.insertCustomer(mCustomer)
-                if (result > 0) Toast.makeText(
-                    viewMain.context,
-                    resources.getString(R.string.salvo_com_sucesso),
-                    Toast.LENGTH_LONG
-                ).show()
-                else Toast.makeText(
+                if (result > 0) {
+                    Toast.makeText(
+                        viewMain.context,
+                        resources.getString(R.string.salvo_com_sucesso),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else Toast.makeText(
                     viewMain.context,
                     resources.getString(R.string.erro_inesperado),
                     Toast.LENGTH_LONG
@@ -74,7 +77,7 @@ class CustomerFragment : Fragment() {
                     resources.getString(R.string.erro_inesperado),
                     Toast.LENGTH_LONG
                 ).show()
-            }finally {
+            } finally {
                 mDialog.dismiss()
             }
         }
