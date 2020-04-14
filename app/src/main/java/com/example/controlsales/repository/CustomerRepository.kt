@@ -103,4 +103,11 @@ class CustomerRepository private constructor(context: Context) {
         return customer
     }
 
+    fun deleteCustomer(id: String): Int{
+        val db = mConnection.writableDatabase
+        val selection = "${ConstantsDB.CUSTOMER.COLUMNS.ID} = ?"
+        val selectionArgs = arrayOf(id)
+        return db.delete(ConstantsDB.CUSTOMER.DATA_NAME, selection, selectionArgs)
+    }
+
 }

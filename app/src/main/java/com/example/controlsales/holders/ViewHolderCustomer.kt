@@ -27,6 +27,7 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
     }
 
     fun bind(customer: Customer) {
+        mCustomerBusiness = CustomerBusiness(itemView.context)
         nameCustomer.text = customer.name
         emailCustomer.text = customer.email
         telephoneCustomer.text = customer.telephone
@@ -42,7 +43,8 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
         imgDelete.setOnClickListener(View.OnClickListener {
             val snack = Snackbar.make(it, "Deseja excluir " + nameCustomer.text.toString() + "?", Snackbar.LENGTH_LONG)
             snack.setAction("Sim", View.OnClickListener {
-                itemView.visibility = View.GONE
+                mCustomerBusiness.deleteCustomer(idCustomer.text.toString())
+                actualizeRecyclerView()
             })
             val snackView = snack.view
             snack.show()
@@ -78,7 +80,6 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
         val btnAlterCustomer = mDialog.findViewById<Button>(R.id.btnSaveCustomer)
 
         btnAlterCustomer.setOnClickListener {
-            mCustomerBusiness = CustomerBusiness(itemView.context)
             if (mCustomerBusiness.alterCustomer(
                     Customer(
                         idCustomer.text.toString().toInt(),
@@ -89,8 +90,7 @@ class ViewHolderCustomer constructor(itemView: View) : RecyclerView.ViewHolder(i
                     )
                 ) > 0
             ) {
-                mRecyclerViewCustomer.submitList(mCustomerBusiness.getAllCustomer())
-                mRecyclerViewCustomer.notifyDataSetChanged()
+                actualizeRecyclerView()
                 mDialog.dismiss()
             }
         }

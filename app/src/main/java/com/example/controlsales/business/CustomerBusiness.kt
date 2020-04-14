@@ -43,4 +43,12 @@ class CustomerBusiness(context: Context) {
         }
     }
 
+    fun deleteCustomer(id: String): Int{
+        try{
+            return customerRepository.deleteCustomer(id)
+        }catch (e: Exception){
+            throw e
+        }
+    }
+
 }
