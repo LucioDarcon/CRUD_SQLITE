@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 class SecurityPreferences(context: Context) {
 
-    private val mSharedPreferences: SharedPreferences = context.getSharedPreferences("barbershop", Context.MODE_PRIVATE)
+    private val mSharedPreferences: SharedPreferences = context.getSharedPreferences("controlsales", Context.MODE_PRIVATE)
 
     fun storeString(key: String, value: String){
         mSharedPreferences.edit().putString(key, value).apply()

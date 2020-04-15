@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ControlSales</string>
-    <string name="title_action_bar">Vendas</string>
+    <string name="title_action_bar">CRUD</string>
 
     <string name="salvo_com_sucesso">Salvo com sucesso!</string>
     <string name="erro_ao_salvar">Erro ao salvar!</string>
@@ -35,4 +35,9 @@
     <string name="clientes">Clientes</string>
     <string name="gerenciar_clientes">Gerenciar Clientes</string>
     <string name="comprar">Comprar</string>
+    <string name="realizar_venda">Realizar venda</string>
+    <string name="vendas">Vendas</string>
+    <string name="gerenciar_vendas">Gerenciar vendas</string>
+    <string name="by_lucio_darcon">By Lucio Darcon</string>
+    <string name="https_github_com_luciodarcon">https://github.com/LucioDarcon</string>
 </resources>
