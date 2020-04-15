@@ -29,6 +29,10 @@ class RecyclerViewCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+    fun add(position: Int) {
+        notifyItemInserted(position)
+    }
+
     fun submitList(listCustomer: ArrayList<Customer>){
         this.items = listCustomer
     }

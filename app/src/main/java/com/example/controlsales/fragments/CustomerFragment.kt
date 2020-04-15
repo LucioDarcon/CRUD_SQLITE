@@ -28,18 +28,24 @@ class CustomerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        var viewMain = inflater.inflate(R.layout.search_customer_fragment, container, false)
-        viewMain = createRecyclerViewCustomer(viewMain)
+        val viewMain = inflater.inflate(R.layout.search_customer_fragment, container, false)
+        val recyclerViewMain = createRecyclerViewCustomer(viewMain)
 
-        val floatButton = viewMain.findViewById<FloatingActionButton>(R.id.floatButtonAddCustomer)
+        val floatButton =
+            viewMain.findViewById<FloatingActionButton>(R.id.floatButtonAddCustomer)
         floatButton.setOnClickListener {
-            showDialogRegisterCustomer(viewMain)
+            try {
+               ViewHolderCustomer(viewMain).showDialogRegisterCustomer(viewMain, recyclerViewMain)
+            }catch (e: IllegalStateException){
+                showDialogRegisterCustomer(viewMain, recyclerViewMain)
+            }
         }
 
         return viewMain
     }
 
-    private fun showDialogRegisterCustomer(viewMain: View) {
+    private fun showDialogRegisterCustomer(viewMain: View,recyclerViewCustomer: RecyclerViewCustomer){
+        mCustomerBusiness = CustomerBusiness(viewMain.context)
         val fromBottom = AnimationUtils.loadAnimation(viewMain.context, R.anim.from_bottom)
         val mDialog = Dialog(viewMain.context)
         mDialog.setContentView(R.layout.dialog_customer)
@@ -61,22 +67,14 @@ class CustomerFragment : Fragment() {
                 )
                 val result = mCustomerBusiness.insertCustomer(mCustomer)
                 if (result > 0) {
-                    Toast.makeText(
-                        viewMain.context,
-                        resources.getString(R.string.salvo_com_sucesso),
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else Toast.makeText(
-                    viewMain.context,
-                    resources.getString(R.string.erro_inesperado),
-                    Toast.LENGTH_LONG
-                ).show()
+                    Toast.makeText(viewMain.context, R.string.salvo_com_sucesso, Toast.LENGTH_LONG).show()
+                } else{
+                    Toast.makeText(viewMain.context, R.string.erro_ao_salvar, Toast.LENGTH_LONG).show()
+                }
+                recyclerViewCustomer.submitList(mCustomerBusiness.getAllCustomer())
+                recyclerViewCustomer.notifyDataSetChanged()
             } catch (e: Exception) {
-                Toast.makeText(
-                    viewMain.context,
-                    resources.getString(R.string.erro_inesperado),
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(viewMain.context, R.string.erro_inesperado, Toast.LENGTH_LONG).show()
             } finally {
                 mDialog.dismiss()
             }
@@ -88,10 +86,10 @@ class CustomerFragment : Fragment() {
         }
     }
 
-    private fun createRecyclerViewCustomer(viewMain: View): View {
+    private fun createRecyclerViewCustomer(viewMain: View): RecyclerViewCustomer {
+        var recyclerViewCustomer = RecyclerViewCustomer()
+        val recyclerView = viewMain.findViewById<RecyclerView>(R.id.recyclerViewCustomer)
         try {
-            val recyclerViewCustomer: RecyclerViewCustomer
-            val recyclerView = viewMain.findViewById<RecyclerView>(R.id.recyclerViewCustomer)
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(context)
                 recyclerViewCustomer = RecyclerViewCustomer()
@@ -107,7 +105,7 @@ class CustomerFragment : Fragment() {
                 Toast.LENGTH_LONG
             ).show()
         }
-        return viewMain
+        return recyclerViewCustomer
     }
 
 
