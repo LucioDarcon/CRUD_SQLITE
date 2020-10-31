@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
+import com.example.controlsales.dialogs.RegisterCustomerDialog
 import com.example.controlsales.entities.Customer
 import com.example.controlsales.holders.ViewHolderCustomer
 import com.example.controlsales.recyclerviews.RecyclerViewCustomer
@@ -46,44 +47,8 @@ class CustomerFragment : Fragment() {
 
     private fun showDialogRegisterCustomer(viewMain: View,recyclerViewCustomer: RecyclerViewCustomer){
         mCustomerBusiness = CustomerBusiness(viewMain.context)
-        val fromBottom = AnimationUtils.loadAnimation(viewMain.context, R.anim.from_bottom)
-        val mDialog = Dialog(viewMain.context)
-        mDialog.setContentView(R.layout.dialog_customer)
-        mDialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
-        mDialog.show()
-        val btnSalveCustomer = mDialog.findViewById<Button>(R.id.btnSaveCustomer)
-        btnSalveCustomer.animation = fromBottom
-        btnSalveCustomer.setOnClickListener {
-            try {
-                val edtNameCustomer = mDialog.findViewById<EditText>(R.id.edtNameCustomer)
-                val edtEmailCustomer = mDialog.findViewById<EditText>(R.id.edtEmailCustomer)
-                val edtTelephoneCustomer = mDialog.findViewById<EditText>(R.id.edtTelephoneCustomer)
-                val edtCPFCustomer = mDialog.findViewById<EditText>(R.id.edtCpfCustomer)
-                val mCustomer = Customer(
-                    name = edtNameCustomer.text.toString(),
-                    email = edtEmailCustomer.text.toString(),
-                    telephone = edtTelephoneCustomer.text.toString(),
-                    cpf = edtCPFCustomer.text.toString()
-                )
-                val result = mCustomerBusiness.insertCustomer(mCustomer)
-                if (result > 0) {
-                    Toast.makeText(viewMain.context, R.string.salvo_com_sucesso, Toast.LENGTH_LONG).show()
-                } else{
-                    Toast.makeText(viewMain.context, R.string.erro_ao_salvar, Toast.LENGTH_LONG).show()
-                }
-                recyclerViewCustomer.submitList(mCustomerBusiness.getAllCustomer())
-                recyclerViewCustomer.notifyDataSetChanged()
-            } catch (e: Exception) {
-                Toast.makeText(viewMain.context, R.string.erro_inesperado, Toast.LENGTH_LONG).show()
-            } finally {
-                mDialog.dismiss()
-            }
-        }
-        val btnCloseDialog = mDialog.findViewById<Button>(R.id.btnCloseDialogCustomer)
-        btnCloseDialog.animation = fromBottom
-        btnCloseDialog.setOnClickListener {
-            mDialog.dismiss()
-        }
+        val mRegisterCustomerDialog = RegisterCustomerDialog(viewMain.context)
+        mRegisterCustomerDialog.show()
     }
 
     private fun createRecyclerViewCustomer(viewMain: View): RecyclerViewCustomer {
