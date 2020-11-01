@@ -7,10 +7,13 @@ import com.example.controlsales.R
 import com.example.controlsales.entities.Customer
 import com.example.controlsales.holders.ViewHolderCustomer
 
-class RecyclerViewCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<Customer> = ArrayList()
 
+    companion object {
+        lateinit var mOnCLickCustomer: OnClickCustomer
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolderCustomer(LayoutInflater.from(parent.context).inflate(R.layout.recycler_customer, parent, false))
@@ -23,18 +26,19 @@ class RecyclerViewCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderCustomer -> {
-                holder.assignRecyclerView(this)
-                holder.bind(items[position])
+                holder.bind(items[position], mOnCLickCustomer)
             }
         }
     }
 
-    fun add(position: Int) {
-        notifyItemInserted(position)
+    fun submitList(listCustomer: ArrayList<Customer>, onCLickCustomer: OnClickCustomer){
+        this.items       = listCustomer
+        mOnCLickCustomer = onCLickCustomer
     }
 
-    fun submitList(listCustomer: ArrayList<Customer>){
-        this.items = listCustomer
+    interface OnClickCustomer {
+        fun onClickEditCustomer(customer: Customer)
+        fun onClickDeleteCustomer(customer: Customer)
     }
 
 

@@ -11,8 +11,12 @@ class CustomerBusiness(context: Context) {
 
     fun insertCustomer(mCustomer: Customer): Int{
         var result = 0
-        try{
-            result = customerRepository.insertCustomer(mCustomer)
+        result = try{
+            if (mCustomer.id == 0) {
+                customerRepository.insertCustomer(mCustomer)
+            } else {
+                customerRepository.alterCustomer(mCustomer)
+            }
         }catch (e: Exception){
             throw e
         }
