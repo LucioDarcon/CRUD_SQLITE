@@ -7,5 +7,4 @@ data class Customer(
     val telephone: String = "",
     val cpf: String = "",
     val idAdm: Int = 0
-) {
-}
+)

@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.dialog_customer.*
 
 class RegisterCustomerDialog(
     context: Context,
-    private val customer: Customer,
-    private val onEditCustomer: OnEditCustomer.View
+    customer: Customer,
+    onEditCustomer: OnEditCustomer.View
 ) : Dialog(context),
     View.OnClickListener {
 
@@ -47,7 +47,7 @@ class RegisterCustomerDialog(
 
     private fun setEntityCustomToTextFieldDialog(customer: Customer) {
         if (customer.id != 0) {
-            mBinding.customerDto = customer
+            mBinding.customer = customer
             mBinding.executePendingBindings()
         }
     }
@@ -80,14 +80,14 @@ class RegisterCustomerDialog(
         if (validationFields()) {
 
             var mCustomer = Customer()
-            if (mBinding.customerDto != null) {
+            if (mBinding.customer != null) {
                 mCustomer = Customer(
-                    mBinding.customerDto!!.id,
+                    mBinding.customer!!.id,
                     name = edtNameCustomer.text.toString(),
                     email = edtEmailCustomer.text.toString(),
                     telephone = edtTelephoneCustomer.text.toString(),
                     cpf = edtCpfCustomer.text.toString(),
-                    idAdm = mBinding.customerDto!!.idAdm
+                    idAdm = mBinding.customer!!.idAdm
                 )
             } else {
                 mCustomer = Customer(

@@ -1,9 +1,12 @@
 package com.example.controlsales.recyclerviews
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controlsales.R
+import com.example.controlsales.databinding.CardCustomerComponentBinding
 import com.example.controlsales.entities.Customer
 import com.example.controlsales.holders.ViewHolderCustomer
 
@@ -16,7 +19,8 @@ class AdapterCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolderCustomer(LayoutInflater.from(parent.context).inflate(R.layout.recycler_customer, parent, false))
+        val mCardCustomerComponentBinding = DataBindingUtil.inflate<CardCustomerComponentBinding>(LayoutInflater.from(parent.context), R.layout.card_customer_component, null, false)
+        return ViewHolderCustomer(mCardCustomerComponentBinding)
     }
 
     override fun getItemCount(): Int {
