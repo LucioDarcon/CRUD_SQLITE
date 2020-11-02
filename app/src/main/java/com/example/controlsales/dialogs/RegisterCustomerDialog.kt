@@ -2,6 +2,8 @@ package com.example.controlsales.dialogs
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +16,15 @@ import com.example.controlsales.business.CustomerBusiness
 import com.example.controlsales.databinding.DialogCustomerBinding
 import com.example.controlsales.entities.Customer
 import kotlinx.android.synthetic.main.dialog_customer.*
+import java.io.File
+
 
 class RegisterCustomerDialog(
     context: Context,
     customer: Customer,
     onEditCustomer: OnEditCustomer.View
 ) : Dialog(context),
-    View.OnClickListener {
+    View.OnClickListener, OnEditCustomer.Dialog {
 
     private lateinit var mCustomerBusiness: CustomerBusiness
     private var mCustomer: Customer = customer
@@ -38,6 +42,7 @@ class RegisterCustomerDialog(
         )
         mCustomerBusiness = CustomerBusiness(context)
 
+        mView.getInstanceDialog(this)
         setContentView(mBinding.root)
         setListeners()
         configureDialog()
@@ -74,6 +79,7 @@ class RegisterCustomerDialog(
     private fun setListeners() {
         btnSaveCustomer.setOnClickListener(this)
         btnCloseDialogCustomer.setOnClickListener(this)
+        mBinding.dialogCustomerCameraImageView.setOnClickListener(this)
     }
 
     private fun saveCustomer() {
@@ -107,21 +113,22 @@ class RegisterCustomerDialog(
         }
     }
 
-    private fun closeDialog() {
-        btnCloseDialogCustomer.setOnClickListener {
-            dismiss()
-        }
-    }
-
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnCloseDialogCustomer -> {
-                closeDialog()
+                dismiss()
             }
             R.id.btnSaveCustomer -> {
                 saveCustomer()
             }
+            R.id.dialog_customer_camera_image_view -> {
+                mView.getImage()
+            }
         }
+    }
+
+    override fun showImage(uri: Uri) {
+        mBinding.dialogCustomerCameraImageView.setImageURI(uri)
     }
 
 

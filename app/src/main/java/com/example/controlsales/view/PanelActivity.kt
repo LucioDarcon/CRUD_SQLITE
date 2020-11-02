@@ -1,7 +1,9 @@
 package com.example.controlsales.view
 
 import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView

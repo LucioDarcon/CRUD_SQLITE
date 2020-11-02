@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,9 +11,10 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_customer_component_general_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_marginTop="16dp">
 
         <RelativeLayout
             android:id="@+id/recyclerViewAllCustomer"
@@ -20,66 +22,47 @@
             android:layout_height="wrap_content"
             android:background="@color/grey">
 
-            <TextView
-                android:id="@+id/itemCustomerId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
-
             <ImageView
-                android:id="@+id/imgEditCustomer"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:id="@+id/card_customer_component_customer_image_view"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
                 android:layout_margin="16dp"
-                android:src="@drawable/ic_edit_black_24dp" />
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
 
-            <ImageView
-                android:id="@+id/imgAddressCustomer"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_margin="15dp"
-                android:layout_toStartOf="@+id/imgDeleteCustomer"
-                android:layout_toLeftOf="@+id/imgDeleteCustomer"
-                android:layout_toEndOf="@+id/imgEditCustomer"
-                android:layout_toRightOf="@+id/imgEditCustomer"
-                android:src="@drawable/ic_location_on_black_24dp" />
-
-            <ImageView
-                android:id="@+id/imgDeleteCustomer"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_margin="15dp"
-                android:src="@drawable/ic_delete_black_24dp" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_below="@+id/imgDeleteCustomer"
-                android:src="@drawable/line" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/itemCustomerName"
-                style="@style/Widget.AppCompat.Light.ActionBar.TabText"
+            <TextView
+                android:id="@+id/card_customer_component_customer_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imgAddressCustomer"
-                android:background="@drawable/line"
-                android:gravity="center"
+                android:layout_alignEnd="@+id/card_customer_component_delete_customer_image_view"
+                android:layout_alignRight="@+id/card_customer_component_delete_customer_image_view"
+                android:layout_alignParentTop="true"
+                android:layout_margin="16dp"
+                android:layout_toEndOf="@+id/card_customer_component_customer_image_view"
+                android:layout_toRightOf="@+id/card_customer_component_customer_image_view"
                 android:text="@{customerDto.name}" />
 
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/itemCustomerCpf"
-                style="@style/Widget.AppCompat.Light.ActionBar.TabText"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/itemCustomerName"
-                android:gravity="center"
-                android:text="@{customerDto.cpf}" />
+                android:layout_below="@+id/card_customer_component_customer_text_view"
+                android:layout_toEndOf="@+id/card_customer_component_customer_image_view"
+                android:layout_toRightOf="@+id/card_customer_component_customer_image_view"
+                android:text="@{customerDto.email}" />
+
+            <ImageView
+                android:id="@+id/card_customer_component_delete_customer_image_view"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="16dp"
+                app:srcCompat="@drawable/ic_edit_black_24dp" />
 
         </RelativeLayout>
 

@@ -19,7 +19,12 @@ class AdapterCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val mCardCustomerComponentBinding = DataBindingUtil.inflate<CardCustomerComponentBinding>(LayoutInflater.from(parent.context), R.layout.card_customer_component, null, false)
+        val mCardCustomerComponentBinding = DataBindingUtil.inflate<CardCustomerComponentBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.card_customer_component,
+            null,
+            false
+        )
         return ViewHolderCustomer(mCardCustomerComponentBinding)
     }
 
@@ -28,15 +33,15 @@ class AdapterCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
+        when (holder) {
             is ViewHolderCustomer -> {
                 holder.bind(items[position], mOnCLickCustomer)
             }
         }
     }
 
-    fun submitList(listCustomer: ArrayList<Customer>, onCLickCustomer: OnClickCustomer){
-        this.items       = listCustomer
+    fun submitList(listCustomer: ArrayList<Customer>, onCLickCustomer: OnClickCustomer) {
+        this.items = listCustomer
         mOnCLickCustomer = onCLickCustomer
     }
 
