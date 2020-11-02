@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:background="@color/grey">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/card_customer_component_customer_image_view"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -31,8 +31,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_margin="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
+                android:layout_marginLeft="16dp" />
 
             <TextView
                 android:id="@+id/card_customer_component_customer_text_view"

@@ -31,6 +31,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(
         ${ConstantsDB.CUSTOMER.COLUMNS.EMAIL} TEXT,
         ${ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE} TEXT,
         ${ConstantsDB.CUSTOMER.COLUMNS.CPF} TEXT,
+        ${ConstantsDB.CUSTOMER.COLUMNS.IMAGE} TEXT,
         FOREIGN KEY (${ConstantsDB.CUSTOMER.COLUMNS.ID_ADM}) REFERENCES ${ConstantsDB.ADM.DATA_NAME} (${ConstantsDB.ADM.COLUMNS.ID})
         );"""
 
@@ -43,7 +44,6 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-//        ADMIN
         db.execSQL(dropTableAdmin)
         db.execSQL(dropTableCustomer)
         db.execSQL(createTableAdmin)

@@ -1,7 +1,10 @@
 package com.example.controlsales.dialogs
 
+import android.Manifest
 import android.app.Dialog
+import android.app.PendingIntent.getActivity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +13,8 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
@@ -30,6 +35,7 @@ class RegisterCustomerDialog(
     private var mCustomer: Customer = customer
     private lateinit var mBinding: DialogCustomerBinding
     private var mView = onEditCustomer
+    private var mPathImageCustomer = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +59,12 @@ class RegisterCustomerDialog(
     private fun setEntityCustomToTextFieldDialog(customer: Customer) {
         if (customer.id != 0) {
             mBinding.customer = customer
+            mBinding.dialogCustomerCameraImageView.setImageURI(Uri.fromFile(
+                File(customer.image)
+            ))
             mBinding.executePendingBindings()
+        } else {
+            mBinding.dialogCustomerCameraImageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_baseline_camera_alt_24))
         }
     }
 
@@ -93,14 +104,16 @@ class RegisterCustomerDialog(
                     email = edtEmailCustomer.text.toString(),
                     telephone = edtTelephoneCustomer.text.toString(),
                     cpf = edtCpfCustomer.text.toString(),
-                    idAdm = mBinding.customer!!.idAdm
+                    idAdm = mBinding.customer!!.idAdm,
+                    image = mPathImageCustomer
                 )
             } else {
                 mCustomer = Customer(
                     name = edtNameCustomer.text.toString(),
                     email = edtEmailCustomer.text.toString(),
                     telephone = edtTelephoneCustomer.text.toString(),
-                    cpf = edtCpfCustomer.text.toString()
+                    cpf = edtCpfCustomer.text.toString(),
+                    image = mPathImageCustomer
                 )
             }
 
@@ -127,7 +140,8 @@ class RegisterCustomerDialog(
         }
     }
 
-    override fun showImage(uri: Uri) {
+    override fun showImage(uri: Uri, path: String) {
+        mPathImageCustomer = path
         mBinding.dialogCustomerCameraImageView.setImageURI(uri)
     }
 

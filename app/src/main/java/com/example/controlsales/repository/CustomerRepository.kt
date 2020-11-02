@@ -32,6 +32,7 @@ class CustomerRepository private constructor(context: Context) {
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.EMAIL, mCustomer.email)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE, mCustomer.telephone)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.CPF, mCustomer.cpf)
+        contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.IMAGE, mCustomer.image)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.ID_ADM, idAdm?.toInt())
         result = db.insert(ConstantsDB.CUSTOMER.DATA_NAME, null, contentValues).toInt()
         return result
@@ -45,7 +46,8 @@ class CustomerRepository private constructor(context: Context) {
             ConstantsDB.CUSTOMER.COLUMNS.NAME,
             ConstantsDB.CUSTOMER.COLUMNS.EMAIL,
             ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE,
-            ConstantsDB.CUSTOMER.COLUMNS.CPF
+            ConstantsDB.CUSTOMER.COLUMNS.CPF,
+            ConstantsDB.CUSTOMER.COLUMNS.IMAGE
         )
         val idAdm = mSecurityPreferences.getStoredString("idAdm")?.toInt()
         val selection = "${ConstantsDB.CUSTOMER.COLUMNS.ID_ADM} = ?"
@@ -59,7 +61,8 @@ class CustomerRepository private constructor(context: Context) {
                 name = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.NAME)),
                 email = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.EMAIL)),
                 telephone = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE)),
-                cpf = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.CPF))
+                cpf = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.CPF)),
+                image = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.IMAGE))
             )
             arrayListCustomer.add(customer)
         }
@@ -76,6 +79,7 @@ class CustomerRepository private constructor(context: Context) {
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.EMAIL, mCustomer.email)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE, mCustomer.telephone)
         contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.CPF, mCustomer.cpf)
+        contentValues.put(ConstantsDB.CUSTOMER.COLUMNS.IMAGE, mCustomer.image)
 
         return db.update(ConstantsDB.CUSTOMER.DATA_NAME, contentValues,selection, selectionArgs).toInt()
     }
@@ -86,7 +90,8 @@ class CustomerRepository private constructor(context: Context) {
             ConstantsDB.CUSTOMER.COLUMNS.NAME,
             ConstantsDB.CUSTOMER.COLUMNS.EMAIL,
             ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE,
-            ConstantsDB.CUSTOMER.COLUMNS.CPF
+            ConstantsDB.CUSTOMER.COLUMNS.CPF,
+            ConstantsDB.CUSTOMER.COLUMNS.IMAGE
         )
         val selection = "${ConstantsDB.CUSTOMER.COLUMNS.ID} = ?"
         val selectionArgs = arrayOf(id)
@@ -98,7 +103,8 @@ class CustomerRepository private constructor(context: Context) {
                 Customer(name = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.NAME)),
                 email = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.EMAIL)),
                 telephone = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.TELEPHONE)),
-                cpf = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.CPF)))
+                cpf = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.CPF)),
+                image = cursor.getString(cursor.getColumnIndex(ConstantsDB.CUSTOMER.COLUMNS.IMAGE)))
         }
         return customer
     }

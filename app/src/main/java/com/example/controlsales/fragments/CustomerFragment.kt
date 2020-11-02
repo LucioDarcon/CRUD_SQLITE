@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
@@ -81,7 +82,14 @@ class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCust
 
     private fun showImage(data: Intent?) {
         val selectedImage = data?.data
-        mRegisterCustomerDialog.showImage(selectedImage!!)
+        val filePathColumn =
+            arrayOf(MediaStore.Images.Media.DATA)
+        val cursor: Cursor? =
+            context?.contentResolver?.query(selectedImage!!, filePathColumn, null, null, null)
+        cursor?.moveToFirst()
+        val columnIndex: Int = cursor!!.getColumnIndex(filePathColumn[0])
+        val picturePath: String = cursor.getString(columnIndex)
+        mRegisterCustomerDialog.showImage(selectedImage!!, picturePath)
     }
 
     override fun getImage() {

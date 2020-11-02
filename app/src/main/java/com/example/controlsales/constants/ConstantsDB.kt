@@ -23,6 +23,7 @@ class ConstantsDB {
             const val EMAIL = "email"
             const val TELEPHONE = "telephone"
             const val CPF = "cpf"
+            const val IMAGE = "image"
         }
     }
 
