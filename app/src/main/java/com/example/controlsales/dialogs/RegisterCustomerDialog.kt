@@ -59,9 +59,13 @@ class RegisterCustomerDialog(
     private fun setEntityCustomToTextFieldDialog(customer: Customer) {
         if (customer.id != 0) {
             mBinding.customer = customer
-            mBinding.dialogCustomerCameraImageView.setImageURI(Uri.fromFile(
-                File(customer.image)
-            ))
+            if (customer.image == "") {
+                mBinding.dialogCustomerCameraImageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_baseline_camera_alt_24))
+            } else {
+                mBinding.dialogCustomerCameraImageView.setImageURI(Uri.fromFile(
+                    File(customer.image)
+                ))
+            }
             mBinding.executePendingBindings()
         } else {
             mBinding.dialogCustomerCameraImageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_baseline_camera_alt_24))

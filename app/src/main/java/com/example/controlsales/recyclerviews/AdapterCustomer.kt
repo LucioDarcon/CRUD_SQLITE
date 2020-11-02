@@ -1,5 +1,7 @@
 package com.example.controlsales.recyclerviews
 
+import android.content.Context
+import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +27,7 @@ class AdapterCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             null,
             false
         )
-        return ViewHolderCustomer(mCardCustomerComponentBinding)
+        return ViewHolderCustomer(mCardCustomerComponentBinding, parent.context)
     }
 
     override fun getItemCount(): Int {
@@ -47,7 +49,7 @@ class AdapterCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnClickCustomer {
         fun onClickEditCustomer(customer: Customer)
-        fun onClickDeleteCustomer(customer: Customer)
+        fun onClickDeleteCustomer(customer: Customer, cardCustomerComponentBinding : CardCustomerComponentBinding)
     }
 
 
