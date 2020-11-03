@@ -50,6 +50,8 @@ class AdapterCustomer : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     interface OnClickCustomer {
         fun onClickEditCustomer(customer: Customer)
         fun onClickDeleteCustomer(customer: Customer, cardCustomerComponentBinding : CardCustomerComponentBinding)
+        fun onCLickCardCustomer(customer: Customer)
+        fun onClickImageViewCustomer(customer: Customer)
     }
 
 

@@ -1,14 +1,8 @@
 package com.example.controlsales.holders
 
-import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.widget.FrameLayout
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controlsales.R
 import com.example.controlsales.converters.ConverterCustomer.converterCustomerToCustomerDto
@@ -28,6 +22,14 @@ class ViewHolderCustomer constructor(cardCustomerComponentBinding: CardCustomerC
             mOnCLickCustomer.onClickEditCustomer(customer)
         }
 
+        mCardCustomerComponentBinding.cardCustomerComponentCustomerImageView.setOnClickListener {
+            mOnCLickCustomer.onClickImageViewCustomer(customer)
+        }
+
+//        mCardCustomerComponentBinding.cardCustomerComponentGeneralCardView.setOnClickListener {
+//            mOnCLickCustomer.onCLickCardCustomer(customer)
+//        }
+
         mCardCustomerComponentBinding.cardCustomerComponentGeneralCardView.setOnLongClickListener {
             mOnCLickCustomer.onClickDeleteCustomer(customer, mCardCustomerComponentBinding)
             true
@@ -41,7 +43,7 @@ class ViewHolderCustomer constructor(cardCustomerComponentBinding: CardCustomerC
             )
         } else {
             mCardCustomerComponentBinding.cardCustomerComponentCustomerImageView.setImageDrawable(ContextCompat.getDrawable(
-                mContext, R.drawable.ic_baseline_camera_alt_24)
+                mContext, R.drawable.ic_camera)
             )
         }
 

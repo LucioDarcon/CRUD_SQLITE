@@ -5,25 +5,22 @@ import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.*
-import android.widget.TextView
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
 import com.example.controlsales.databinding.CardCustomerComponentBinding
 import com.example.controlsales.databinding.CustomerFragmentBinding
+import com.example.controlsales.dialogs.DialogViewCustomerPhoto
 import com.example.controlsales.dialogs.OnEditCustomer
 import com.example.controlsales.dialogs.RegisterCustomerDialog
 import com.example.controlsales.entities.Customer
 import com.example.controlsales.recyclerviews.AdapterCustomer
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.customer_fragment.view.*
 
 class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCustomer.View {
 
@@ -83,6 +80,24 @@ class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCust
         mConfirmDeleteCustomer        = customer
         mCardCustomerComponentBinding = cardCustomerComponentBinding
         changeStatsCardDelete()
+    }
+
+    override fun onClickImageViewCustomer(customer: Customer) {
+        DialogViewCustomerPhoto(context!!, customer).show()
+    }
+
+    override fun onCLickCardCustomer(customer: Customer) {
+        val args = Bundle()
+        args.putInt("customerId", customer.id)
+
+        val generalCustomerFragment = GeneralCustomerFragment()
+        generalCustomerFragment.arguments = args
+        val spFragment = activity?.supportFragmentManager?.beginTransaction()
+        spFragment?.replace(
+            R.id.content_fragment,
+            generalCustomerFragment
+        )
+        spFragment?.addToBackStack("generalCustomerFragment")?.commit()
     }
 
     private fun changeStatsCardDelete() {
