@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -20,6 +21,9 @@ import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
 import com.example.controlsales.databinding.DialogCustomerBinding
 import com.example.controlsales.entities.Customer
+import com.example.controlsales.util.CreateMaskToTextView
+import com.github.rtoshiro.util.format.SimpleMaskFormatter
+import com.github.rtoshiro.util.format.text.MaskTextWatcher
 import kotlinx.android.synthetic.main.dialog_customer.*
 import java.io.File
 
@@ -56,6 +60,7 @@ class RegisterCustomerDialog(
         setEntityCustomToTextFieldDialog(mCustomer)
     }
 
+
     private fun setEntityCustomToTextFieldDialog(customer: Customer) {
         if (customer.id != 0) {
             mBinding.customer = customer
@@ -81,14 +86,14 @@ class RegisterCustomerDialog(
     }
 
     private fun configureDialog() {
+        mBinding.edtTelephoneCustomer.addTextChangedListener(CreateMaskToTextView.setMaskToTextViewTelephone(mBinding.edtTelephoneCustomer))
+        mBinding.edtCpfCustomer.addTextChangedListener(CreateMaskToTextView.setMaskToTextViewCpf(mBinding.edtCpfCustomer))
         btnSaveCustomer.animation = AnimationUtils.loadAnimation(context, R.anim.from_bottom)
     }
 
     private fun validationFields(): Boolean {
         return edtNameCustomer.text.toString() != ""
-                && edtCpfCustomer.text.toString() != ""
                 && edtTelephoneCustomer.text.toString() != ""
-                && edtEmailCustomer.text.toString() != ""
     }
 
     private fun setListeners() {

@@ -31,15 +31,18 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        mSharedPreferences = SecurityPreferences(this)
-        setListeners()
+        if (!checkPermission()) {
+            mSharedPreferences = SecurityPreferences(this)
+            setListeners()
 
-        if (verifyAfterLogin()) redirectPanel()
+            if (verifyAfterLogin()) redirectPanel()
+        }
     }
 
     private fun checkPermission(): Boolean {
         Dexter.withContext(this)
             .withPermissions(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.INTERNET,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_NETWORK_STATE
@@ -67,7 +70,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
         when (v.id) {
             R.id.btnLogin -> {
                 try {
-                    if (validationFields() && checkPermission()) {
+                    if (validationFields()) {
                         mAdmBusiness = AdmBusiness(this)
                         val arrayAdmin = mAdmBusiness.authenticationAdmin(
                             LoginDTO(
@@ -120,5 +123,6 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
     private fun redirectPanel() {
         val i = Intent(this, PanelActivity::class.java)
         startActivity(i)
+        finish()
     }
 }

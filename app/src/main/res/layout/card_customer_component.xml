@@ -51,7 +51,7 @@
                 android:layout_below="@+id/card_customer_component_customer_text_view"
                 android:layout_toEndOf="@+id/card_customer_component_customer_image_view"
                 android:layout_toRightOf="@+id/card_customer_component_customer_image_view"
-                android:text="@{customerDto.email}" />
+                android:text="@{customerDto.telephone}" />
 
             <ImageView
                 android:id="@+id/card_customer_component_delete_customer_image_view"
