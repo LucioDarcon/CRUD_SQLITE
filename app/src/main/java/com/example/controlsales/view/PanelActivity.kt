@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.OnLifecycleEvent
 import com.example.controlsales.R
 import com.example.controlsales.fragments.PanelFragment
 import com.example.controlsales.fragments.CustomerFragment

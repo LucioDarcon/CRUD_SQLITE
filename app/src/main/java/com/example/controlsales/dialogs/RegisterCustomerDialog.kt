@@ -112,7 +112,7 @@ class RegisterCustomerDialog(
                 mCustomer = Customer(
                     name = edtNameCustomer.text.toString(),
                     telephone = edtTelephoneCustomer.text.toString(),
-                    cpf = edtCpfCustomer.text.toString(),
+                    email = edtEmailCustomer.text.toString(),
                     image = mPathImageCustomer
                 )
             }

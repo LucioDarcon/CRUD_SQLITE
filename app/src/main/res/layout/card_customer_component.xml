@@ -63,6 +63,16 @@
                 android:layout_margin="16dp"
                 app:srcCompat="@drawable/ic_edit" />
 
+            <ImageView
+                android:id="@+id/card_customer_component_customer_cancel_click_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                android:layout_toLeftOf="@+id/card_customer_component_delete_customer_image_view"
+                app:srcCompat="@drawable/ic_baseline_close_24"
+                android:layout_toStartOf="@+id/card_customer_component_delete_customer_image_view" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

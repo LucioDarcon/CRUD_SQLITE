@@ -39,6 +39,18 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
     private fun checkPermission(): Boolean {
         Dexter.withContext(this)
             .withPermissions(

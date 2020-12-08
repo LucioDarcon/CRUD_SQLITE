@@ -26,9 +26,9 @@ class ViewHolderCustomer constructor(cardCustomerComponentBinding: CardCustomerC
             mOnCLickCustomer.onClickImageViewCustomer(customer)
         }
 
-//        mCardCustomerComponentBinding.cardCustomerComponentGeneralCardView.setOnClickListener {
-//            mOnCLickCustomer.onCLickCardCustomer(customer)
-//        }
+        mCardCustomerComponentBinding.cardCustomerComponentGeneralCardView.setOnClickListener {
+            mOnCLickCustomer.onCLickCardCustomer(customer)
+        }
 
         mCardCustomerComponentBinding.cardCustomerComponentGeneralCardView.setOnLongClickListener {
             mOnCLickCustomer.onClickDeleteCustomer(customer, mCardCustomerComponentBinding)

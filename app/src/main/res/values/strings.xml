@@ -40,4 +40,7 @@
     <string name="gerenciar_vendas">Gerenciar vendas</string>
     <string name="by_lucio_darcon">By Lucio Darcon</string>
     <string name="https_github_com_luciodarcon">https://github.com/LucioDarcon</string>
+    <string name="date">Data:</string>
+    <string name="name_item">Nome do item:</string>
+    <string name="responsible_of_purchase">Reponsável pela compra:</string>
 </resources>

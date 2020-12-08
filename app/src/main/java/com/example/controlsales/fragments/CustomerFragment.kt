@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.controlsales.R
 import com.example.controlsales.business.CustomerBusiness
@@ -22,7 +23,7 @@ import com.example.controlsales.dialogs.RegisterCustomerDialog
 import com.example.controlsales.entities.Customer
 import com.example.controlsales.recyclerviews.AdapterCustomer
 
-class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCustomer.View {
+class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCustomer.View, View.OnClickListener {
 
     private lateinit var mCustomerBusiness: CustomerBusiness
     private var mAdapterCustomer = AdapterCustomer()
@@ -60,7 +61,13 @@ class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCust
 
         initRecyclerView()
 
+        setListeners()
+
         return mView.root
+    }
+
+    private fun setListeners() {
+        mView.recyclerViewCustomer.setOnClickListener(this)
     }
 
     private fun initRecyclerView() {
@@ -79,7 +86,7 @@ class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCust
     ) {
         mConfirmDeleteCustomer        = customer
         mCardCustomerComponentBinding = cardCustomerComponentBinding
-        changeStatsCardDelete()
+        changeStatsToCardDelete()
     }
 
     override fun onClickImageViewCustomer(customer: Customer) {
@@ -90,17 +97,18 @@ class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCust
         val args = Bundle()
         args.putInt("customerId", customer.id)
 
-        val generalCustomerFragment = GeneralCustomerFragment()
-        generalCustomerFragment.arguments = args
-        val spFragment = activity?.supportFragmentManager?.beginTransaction()
+        val generalCustomerFragment           = PurchaseFragment()
+        generalCustomerFragment.arguments     = args
+        val spFragment : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
         spFragment?.replace(
             R.id.content_fragment,
             generalCustomerFragment
         )
-        spFragment?.addToBackStack("generalCustomerFragment")?.commit()
+
+        spFragment?.addToBackStack("customerFragment")?.commit()
     }
 
-    private fun changeStatsCardDelete() {
+    private fun changeStatsToCardDelete() {
         mCardCustomerComponentBinding.recyclerViewAllCustomer.setBackgroundColor(
             ContextCompat.getColor(
                 context!!,
@@ -113,6 +121,10 @@ class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCust
                 R.drawable.ic_delete_black_24dp
             )
         )
+        mCardCustomerComponentBinding.cardCustomerComponentCustomerCancelClickImageView.visibility = View.VISIBLE
+        mCardCustomerComponentBinding.cardCustomerComponentCustomerCancelClickImageView.setOnClickListener {
+            resetStatCard()
+        }
     }
 
     private fun confirmDeleteCustomer(customer: Customer) {
@@ -135,6 +147,7 @@ class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCust
                 R.color.grey
             )
         )
+        mCardCustomerComponentBinding.cardCustomerComponentCustomerCancelClickImageView.visibility = View.GONE
     }
 
     override fun updateData() {
@@ -173,6 +186,13 @@ class CustomerFragment : Fragment(), AdapterCustomer.OnClickCustomer, OnEditCust
         mRegisterCustomerDialog = mDialog
     }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.recyclerViewCustomer -> {
+                resetStatCard()
+            }
+        }
+    }
 
 
 }

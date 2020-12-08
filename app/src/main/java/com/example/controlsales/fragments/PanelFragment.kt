@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.example.controlsales.R
 
-class PanelFragment : Fragment(){
+
+class PanelFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

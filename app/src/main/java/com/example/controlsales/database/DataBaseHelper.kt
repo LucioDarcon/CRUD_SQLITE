@@ -13,7 +13,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(
 
     companion object {
         private const val DATA_NAME = "control_sales.db"
-        private const val DATA_VERSION = 1
+        private const val DATA_VERSION = 4
     }
 
     private val createTableAdmin = """ CREATE TABLE ${ConstantsDB.ADM.DATA_NAME} (
@@ -46,8 +46,11 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL(dropTableAdmin)
         db.execSQL(dropTableCustomer)
+
         db.execSQL(createTableAdmin)
         db.execSQL(createTableCustomer)
     }
+
+
 
 }
