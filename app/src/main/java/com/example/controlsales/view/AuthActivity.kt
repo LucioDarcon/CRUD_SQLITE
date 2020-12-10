@@ -4,19 +4,20 @@ import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.controlsales.R
 import com.example.controlsales.business.AdmBusiness
-import com.example.controlsales.dto.LoginDTO
 import com.example.controlsales.entities.Adm
 import com.example.controlsales.util.SecurityPreferences
+import com.google.gson.JsonObject
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.koushikdutta.async.future.FutureCallback
+import com.koushikdutta.ion.Ion
 import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_panel.*
 
@@ -83,14 +84,22 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btnLogin -> {
                 try {
                     if (validationFields()) {
-                        mAdmBusiness = AdmBusiness(this)
-                        val arrayAdmin = mAdmBusiness.authenticationAdmin(
-                            LoginDTO(
-                                edtEmail.text.toString(), edtPassword.text.toString()
-                            )
-                        )
-                        mapArray(arrayAdmin)
-                        redirectPanel()
+                        Ion.with(this)
+                            .load("http://10.0.0.106/dashboard/projetos/ask/public/admin")
+                            .asJsonArray()
+                            .setCallback { e, result ->
+                                if (result != null) {
+                                    for (r in result) {
+                                        val responseEmail    = r.asJsonObject.get("email").toString()
+                                        val responsePassword = r.asJsonObject.get("password").toString()
+                                    if (edtEmail.text.toString() == responseEmail.replace("\"", "") && responsePassword.replace("\"", "") == edtPassword.text.toString()) {
+                                            redirectPanel()
+                                        } else {
+                                            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+                                        }
+                                    }
+                                }
+                            }
                     } else {
                         Toast.makeText(
                             this,
