@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".view.AuthActivity">
 
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
@@ -21,6 +22,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="SMART_BANNER"
+            android:layout_gravity="top"
+            ads:adUnitId="ca-app-pub-9531587904937318/9600797893" />
 
         <ImageView
             android:id="@+id/imgAddAdmin"
@@ -44,8 +53,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 android:gravity="center"
-                android:inputType="textWebEmailAddress"
-                android:hint="Digite seu Email" />
+                android:hint="Digite seu Email"
+                android:inputType="textWebEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,8 +71,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 android:gravity="center"
-                android:inputType="textPassword"
-                android:hint="Digite seu Password" />
+                android:hint="Digite seu Password"
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,6 +99,8 @@
             android:layout_margin="16dp"
             android:background="@color/colorSecondary"
             android:text="Entrar" />
+
     </LinearLayout>
+
 
 </LinearLayout>

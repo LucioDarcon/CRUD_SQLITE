@@ -11,6 +11,9 @@
     <string name="open">open</string>
     <string name="close">close</string>
 
+    <string name="add_mob_key">ca-app-pub-9531587904937318~9992869506</string>
+    <string name="add_mob_banner">ca-app-pub-9531587904937318/9600797893</string>
+
 
     <string name="validation_fields_login">Complete os Campos</string>
     <string name="ok">Ok</string>

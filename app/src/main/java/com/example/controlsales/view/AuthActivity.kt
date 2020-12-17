@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.controlsales.R
@@ -12,13 +11,16 @@ import com.example.controlsales.business.AdmBusiness
 import com.example.controlsales.dto.LoginDTO
 import com.example.controlsales.entities.Adm
 import com.example.controlsales.util.SecurityPreferences
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_auth.*
-import kotlinx.android.synthetic.main.activity_panel.*
 
 
 class AuthActivity : AppCompatActivity(), View.OnClickListener {
@@ -30,6 +32,50 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
+
+        MobileAds.initialize(
+            this
+        ) {
+            val adRequest = AdRequest.Builder().build()
+            adView.loadAd(adRequest)
+
+            adView.adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    adView.visibility = View.VISIBLE
+                    super.onAdLoaded()
+                }
+
+                override fun onAdClosed() {
+                    super.onAdClosed()
+                }
+
+                override fun onAdFailedToLoad(p0: Int) {
+                    super.onAdFailedToLoad(p0)
+                }
+
+                override fun onAdFailedToLoad(p0: LoadAdError?) {
+                    super.onAdFailedToLoad(p0)
+                }
+
+                override fun onAdLeftApplication() {
+                    super.onAdLeftApplication()
+                }
+
+                override fun onAdOpened() {
+                    super.onAdOpened()
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                }
+
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                }
+            }
+        }
+
+
 
         if (!checkPermission()) {
             mSharedPreferences = SecurityPreferences(this)

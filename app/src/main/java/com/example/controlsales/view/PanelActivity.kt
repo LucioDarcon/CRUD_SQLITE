@@ -11,8 +11,6 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.OnLifecycleEvent
 import com.example.controlsales.R
 import com.example.controlsales.fragments.PanelFragment
 import com.example.controlsales.fragments.CustomerFragment
@@ -105,8 +103,8 @@ class PanelActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.car -> {
-                Toast.makeText(this, "Car", Toast.LENGTH_LONG).show()
+            R.id.sync -> {
+                Toast.makeText(this, "Iniciando sync", Toast.LENGTH_LONG).show()
             }
         }
         return super.onOptionsItemSelected(item)

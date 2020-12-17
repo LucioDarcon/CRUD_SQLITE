@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.NotificationActivity"></activity>
         <activity android:name=".view.RegisterActivity" />
         <activity android:name=".view.AuthActivity">
             <intent-filter>
@@ -30,6 +31,9 @@
             android:name=".view.PanelActivity"
             android:configChanges="screenSize|orientation"
             android:screenOrientation="portrait" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9531587904937318~9992869506" />
     </application>
 
 </manifest>
